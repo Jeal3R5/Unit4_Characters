@@ -67,7 +67,7 @@ class TamagotchiCreate(LoginRequiredMixin, CreateView):
 
 class TamagotchiUpdate(LoginRequiredMixin, UpdateView):
   model = Tamagotchi
-  fiels = ['name', 'pet_type', 'pet_age']
+  fields = ['name', 'pet_type', 'pet_age']
 
 class TamagotchiDelete(DeleteView):
   model = Tamagotchi
@@ -98,6 +98,15 @@ def add_photo(request, tamagotchi_id):
 def assoc_tamagotchi(request, character_id, tamagotchi_id):
   Character.objects.get(id=character_id).tamagotchis.add(tamagotchi_id)
   return redirect('detail', character_id=character_id)
+
+@login_required
+def add_feeding(request, tamagotchi_id):
+  form = FeedingForm(request.POST)
+  if form.is_valid():
+    new_feeding = form.save(commit=False)
+    new_feeding.tamagotchi_id = tamagotchi_id
+    new_feeding.save()
+  return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
 
 def signup(request):
   error_message = ''
