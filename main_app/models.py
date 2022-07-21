@@ -11,7 +11,7 @@ MEAL = (
 
 # Create your models here.
 
-class Tamagotchi(model.Model):
+class Tamagotchi(models.Model):
     name = models.CharField(max_length=100)
     pet_type = models.CharField(max_length=100)
     pet_age = models.PositiveIntegerField()
