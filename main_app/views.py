@@ -52,8 +52,7 @@ def characters_index(request):
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
 
-  feeding_form = FeedingForm()
-  return render(request, 'characters/detail.html', {'character':character, 'feeding_form':feeding_form})
+  return render(request, 'characters/detail.html', {'character':character})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
