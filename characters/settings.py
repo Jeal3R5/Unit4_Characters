@@ -35,7 +35,7 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['characters-cv-jr.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -89,6 +89,7 @@ WSGI_APPLICATION = 'characters.wsgi.application'
 
 DATABASES = {
     'default': {
+        #'ENGINE': 'django.db.backends.postgresql', -- local migrations
         'ENGINE': 'django.db.backends.postgresqpl_psycopg2',
         'NAME': env('POSTGRES_DB_NAME'),
         'USER': env('POSTGRES_USER'),
