@@ -54,7 +54,7 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
     
-class Photo(model.Models):
+class Photo(models.Model):
     url = models.CharField(max_length=200)
     character = models.ForeignKey( Character, on_delete=CASCADE)
 
