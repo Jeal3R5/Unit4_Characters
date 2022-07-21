@@ -74,7 +74,7 @@ class TamagotchiDelete(DeleteView):
   success_url: '/tamagotchis/'
   
 @login_required
-def add_photo(request, kdrama_id):
+def add_photo(request, tamagotchi_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -87,11 +87,11 @@ def add_photo(request, kdrama_id):
             # build the full url string
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
             # we can assign to cat_id or cat (if you have a cat object)
-            photo = Photo(url=url, kdrama_id=kdrama_id)
+            photo = Photo(url=url, tamagotchi_id=tamagotchi_id)
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', kdrama_id=kdrama_id)
+    return redirect('detail', tamagotchi_id=tamagotchi_id)
 
 def signup(request):
   error_message = ''
