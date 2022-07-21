@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Character, Tamagotchi, Skills, Photo
+from .models import Character, Tamagotchi, Skill, Photo
 from .forms import FeedingForm
 # Create your views here.
 
