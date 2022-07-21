@@ -35,9 +35,9 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['characters-cv-jr.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['characters-cv-jr.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
