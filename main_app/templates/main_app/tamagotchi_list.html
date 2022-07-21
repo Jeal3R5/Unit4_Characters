@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Awards List</h1>
+
+{% for tamagotchi in tamagotchi_list %}
+<a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
+  <span>{{ tamagotchi.name }}</span>
+</a>
+{% endfor %} {% endblock %}

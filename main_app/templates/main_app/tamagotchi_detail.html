@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Tamagotchi Details</h1>
+
+<div>
+  <span>{{ tamagotchi.name }}</span>
+</div>
+<div>
+  <a href="{% url 'tamagotchi_update' tamagotchi.id %}">Edit</a>
+  <a href="{% url 'tamagotchi_delete' tamagotchi.id %}">Delete</a>
+</div>
+{% endblock %}
