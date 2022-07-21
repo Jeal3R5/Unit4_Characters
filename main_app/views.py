@@ -1,7 +1,11 @@
+from msilib.schema import ListView
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Character, Tamagotchi, Photo
 # Create your views here.
+
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'characters-cj-2022'
 
 def home(request):
   return render(request, 'home.html')
@@ -42,3 +46,40 @@ def character_detail(request, character_id):
   feeding_form = FeedingForm()
   return render(request, 'characters/detail.html', {'character':character, 'feeding_form':feeding_form})
 
+class TamagotchiList(LoginRequiredMixin, ListView):
+  model = Tamagotchi
+
+class TamagotchiDetail(LoginRequiredMixin, DetailView):
+  model = Tamagotchi
+
+class TamagotchiCreate(LoginRequiredMixin, CreateView):
+  model = Tamagotchi
+  fields = '__all__'
+
+class TamagotchiUpdate(LoginRequiredMixin, UpdateView):
+  model = Tamagotchi
+  fiels = ['name', 'pet_type', 'pet_age']
+
+class TamagotchiDelete(DeleteView):
+  model = Tamagotchi
+  success_url: '/tamagotchis/'
+  
+@login_required
+def add_photo(request, kdrama_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, kdrama_id=kdrama_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('detail', kdrama_id=kdrama_id)
