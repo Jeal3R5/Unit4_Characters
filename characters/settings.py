@@ -147,6 +147,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_REDIRECT_URL = '/characters/'
 
 # Configure Django App for Heroku
 import django_on_heroku
