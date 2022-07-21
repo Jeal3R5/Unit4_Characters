@@ -93,6 +93,12 @@ def add_photo(request, tamagotchi_id):
             print('An error occurred uploading file to S3')
     return redirect('detail', tamagotchi_id=tamagotchi_id)
 
+
+@login_required
+def assoc_tamagotchi(request, character_id, tamagotchi_id):
+  Character.objects.get(id=character_id).tamagotchis.add(tamagotchi_id)
+  return redirect('detail', character_id=character_id)
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
