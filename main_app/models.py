@@ -56,7 +56,7 @@ class Skill(models.Model):
     
 class Photo(models.Model):
     url = models.CharField(max_length=200)
-    character = models.ForeignKey( Character, on_delete=CASCADE)
+    character = models.ForeignKey( Character, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.url
