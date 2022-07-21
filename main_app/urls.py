@@ -17,7 +17,7 @@ urlpatterns = [
   path('tamagotchis/<int:pk>/delete/', views.TamagotchiDelete.as_view(), name='tamagotchi_delete'),
   path('tamagotchis/<int:tamagotchi_id>/add_feeding/', views.add_feeding, name='add_feeding'),
   path('tamagotchis/<int:tamagotchi_id>/add_photo/', views.add_photo, name='add_photo'), 
-  path('skills/', views.skills_index, name='skill_index'),
-  path('skills/<int:skill_id>/', views.skills_detail, name='skill_detail'),
+  # path('skills/', views.skills_index, name='skill_index'),
+  # path('skills/<int:skill_id>/', views.skills_detail, name='skill_detail'),
   path('accounts/signup/', views.signup, name='signup')
 ]
