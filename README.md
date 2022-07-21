@@ -22,7 +22,7 @@ TECHNOLOGY USED:
 
 To view our Miro Board please follow this link: https://miro.com/app/board/uXjVOkphZE8=/
 
-To view/play (INSERT GAME NAME) follow this link to Heroku: 
+To view/play (INSERT GAME NAME) follow this link to Heroku: https://git.heroku.com/characters-cv-jr.git
 
 
 FUTURE ENHANCEMENTS
