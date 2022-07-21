@@ -1,7 +1,14 @@
-from msilib.schema import ListView
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Character, Tamagotchi, Photo
+from django.views.generic import ListView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+import uuid
+import boto3
+from .models import Character, Tamagotchi, Skills, Photo
+from .forms import FeedingForm
 # Create your views here.
 
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
@@ -13,7 +20,7 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-class CharacterCreate(CreateView):
+class CharacterCreate(LoginRequiredMixin, CreateView):
   model = Character
   fields = [
     'sex', 
@@ -25,21 +32,23 @@ class CharacterCreate(CreateView):
     return super().form_valid(form)
 
 
-class CharacterUpdate(UpdateView):
+class CharacterUpdate(LoginRequiredMixin, UpdateView):
   model = Character
   fields = [
     'sex', 
     'name',
   ]
 
-class CharacterDelete(DeleteView):
+class CharacterDelete(LoginRequiredMixin, DeleteView):
   model = Character
   success_url = '/characters/'
 
+@login_required
 def characters_index(request):
   characters = Character.objects.filter(user=request.user)
   return render(request, 'characters/index.html', {'characters':characters})
 
+@login_required
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
 
@@ -83,3 +92,18 @@ def add_photo(request, kdrama_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('detail', kdrama_id=kdrama_id)
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = "Invalid sign up - please try again"
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
