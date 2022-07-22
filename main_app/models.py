@@ -50,7 +50,7 @@ class Feeding(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=100)
     level = models.PositiveIntegerField()
-
+    character = models.ForeignKey(Character, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
     
