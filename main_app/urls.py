@@ -19,5 +19,6 @@ urlpatterns = [
   path('tamagotchis/<int:tamagotchi_id>/add_photo/', views.add_photo, name='add_photo'), 
   # path('skills/', views.skills_index, name='skill_index'),
   # path('skills/<int:skill_id>/', views.skills_detail, name='skill_detail'),
+  path('/quiz', views.get_quiz, name='quiz'),
   path('accounts/signup/', views.signup, name='signup')
 ]
