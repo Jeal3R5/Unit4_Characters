@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -8,13 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-import requests
 from .models import Character, Tamagotchi, Skill, Photo
 from .forms import FeedingForm
 # Create your views here.
 
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'characters-cj-2022'
+
+# For API Consumption
+categories = ['science', 'music', 'sport_and_leisure', 'arts_and_literature']
 
 def home(request):
   return render(request, 'home.html')
@@ -53,8 +54,12 @@ def characters_index(request):
 @login_required
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
+  all_skills = []
 
-  return render(request, 'characters/detail.html', {'character':character})
+  for cat in categories:
+    all_skills.append([Skill.create(cat,0), Skill.get_quiz(cat)])
+
+  return render(request, 'characters/detail.html', {'character':character, 'all_skills':all_skills})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
@@ -108,15 +113,6 @@ def add_feeding(request, tamagotchi_id):
     new_feeding.tamagotchi_id = tamagotchi_id
     new_feeding.save()
   return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
-
-def get_quiz(request):
-  quiz = {}
-  endpoint = 'https://the-trivia-api.com/api/questions?categories={category}&limit=1&difficulty=easy'
-  url = endpoint.format(category='science')
-  response = requests.get(url)
-  quiz = response.json()
-
-  return render(request, 'quiz.html', {'quiz': quiz})
 
 def signup(request):
   error_message = ''

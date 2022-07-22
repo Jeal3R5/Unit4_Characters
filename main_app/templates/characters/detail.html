@@ -19,7 +19,7 @@
   </div>
   <div class="show middle-panel">
     <h1>{{character.name|capfirst}}'s Details</h1>
-    {% include 'skill_instance.html' with skill_name="science" %}
+    {% for row in all_skills%} {% include 'skill_instance.html' %} {% endfor %}
   </div>
   <div class="show right-panel">
     <h1>{{ character.name}}'s Tamagotchis</h1>
