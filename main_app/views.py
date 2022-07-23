@@ -99,7 +99,7 @@ def add_photo(request, tamagotchi_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', tamagotchi_id=tamagotchi_id)
+    return redirect('tamagotchi_detail', pk=tamagotchi_id)
 
 
 @login_required
