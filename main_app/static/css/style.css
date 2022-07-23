@@ -54,6 +54,6 @@ main {
 }
 
 
-.home_title {
-  align-content: center;
+#home_image {
+  align-items: center;
 }
