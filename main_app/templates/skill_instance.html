@@ -1,4 +1,4 @@
-<div id="skills">
+
   <h3>{{ skill_name | capfirst}}</h3>
   <div class="progress">
     <div
@@ -17,7 +17,5 @@
     data-bs-toggle="modal"
     data-bs-target="#staticBackdrop"
   >
-    Level Up {{ skill_name | capfirst}}
+    Level Up {{ skill_name | capfirst}} index {{index}}
   </button>
-  {% include 'modal.html' with skill_name=skill_name %}
-</div>

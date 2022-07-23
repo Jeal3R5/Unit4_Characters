@@ -57,7 +57,9 @@ def character_detail(request, character_id):
   all_skills = []
 
   for cat in categories:
-    all_skills.append([Skill.create(cat,0), Skill.get_quiz(cat)])
+    all_skills.append(Skill.create(cat,0))
+
+  print(all_skills)
 
   return render(request, 'characters/detail.html', {'character':character, 'all_skills':all_skills})
 
