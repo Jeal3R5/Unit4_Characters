@@ -1,6 +1,8 @@
 :root {
-  --bs-body-bg: red;
+    background-color: #ECE0F8;
+    color: #5f04b4;
 }
+
 header {
   height: 5vh;
 }
@@ -40,3 +42,14 @@ header {
   height: 70%;
   align-self: center;
 }
+
+header {
+    background-color: #ECE0F8;
+    color: #5f04b4;
+}
+
+main {
+    background-color: #ECE0F8;
+    color: #5f04b4
+}
+
