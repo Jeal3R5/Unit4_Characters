@@ -1,5 +1,52 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Character Details</h1>
+<div class="show-page">
+  <div class="show left-panel">
+    <h1>Left</h1>
+    <img
+      id="full-body"
+      src="https://f1.pngfuel.com/png/963/599/727/man-silhouette-drawing-portrait-standing-black-male-human-png-clip-art.png"
+      alt="avatar"
+    />
+    <div class="btns-section">
+      <button>
+        <a href="{% url 'character_update' character.id %}">EDIT</a>
+      </button>
+      <button>
+        <a href="{% url 'character_delete' character.id %}">DELETE</a>
+      </button>
+    </div>
+  </div>
+  <div class="show middle-panel">
+    <h1>{{character.name|capfirst}}'s Details</h1>
+    {% for skill in all_skills%}
+    {% include 'skill_instance.html' with skill_name=skill index=forloop.counter0 %} 
+    {% endfor %}
+    {% include 'modal.html' %}
 
+  </div>
+  <div class="show right-panel">
+    <h1>{{ character.name}}'s Tamagotchis</h1>
+    <div>
+      {% if character.tamagotchis.count %}
+      <h4>Has Tamagotchis</h4>
+      {% for tamagotchi in character.tamagotchis.all %}
+      <p>{{tamagotchi.name}}</p>
+      {% endfor %} {% else %}
+      <h5>No Tamagotchis Owned</h5>
+      {% endif %}
+    </div>
+    <div>
+      <button
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        Own a Tamagotchi
+      </button>
+      {% include 'off_pagination.html' %}
+    </div>
+  </div>
+</div>
 {% endblock %}

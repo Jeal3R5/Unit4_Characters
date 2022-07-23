@@ -14,6 +14,9 @@ from .forms import FeedingForm
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'characters-cj-2022'
 
+# For API Consumption
+categories = ['science', 'music', 'sport_and_leisure', 'arts_and_literature']
+
 def home(request):
   return render(request, 'home.html')
 
@@ -51,8 +54,14 @@ def characters_index(request):
 @login_required
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
+  all_skills = []
 
-  return render(request, 'characters/detail.html', {'character':character})
+  for cat in categories:
+    all_skills.append(Skill.create(cat,0))
+
+  print(all_skills)
+
+  return render(request, 'characters/detail.html', {'character':character, 'all_skills':all_skills})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
