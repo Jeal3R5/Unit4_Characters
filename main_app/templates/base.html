@@ -26,29 +26,29 @@
   </head>
   <body>
     <header>
-      <nav class="navbar-expand-lg bg-lights">
-
-        <a class="nav-link active" aria-current="page" href="/">Characters</a>
-
-        <a class="nav-link" href="{% url 'about' %}">About</a>
-        {% if user.is_authenticated %}
-        <a class="nav-link" href="{% url 'index' %}">View All Characters</a>
-        <a class="nav-link" href="#">View All Skills</a>
-        <a class="nav-link" href="{% url 'tamagotchi_index' %}"
-          >View All Tamagotchis</a
-        >
-        <a class="nav-link" href="{% url 'character_create' %}"
-          >Add Character</a
-        >
-        <a class="nav-link" href="{% url 'tamagotchi_create' %}"
-          >Add Tamagotchi</a
-        >
-        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-        <a class="nav-link" href="{% url 'login' %}">Log In</a>
-        <a class="nav-link" href="{% url 'login' %}">Sign Up</a>
-        {% endif %}
-      </nav>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Characters</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="{% url 'about' %}">About</a>
+		          {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'tamagotchi_index' %}">View All Tamagotchi's</a>
+              <a class="nav-link" href="{% url 'index' %}">View All Characters</a>
+              <a class="nav-link" href="{% url 'character_create' %}">Add Character</a>
+              <a class="nav-link" href="{% url 'tamagotchi_create' %}">Add Tamagotchi</a>
+              <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+              {% else %} 
+              <a class="nav-link" href="{% url 'login' %}">Log In</a>
+              <a class="nav-link" href="{% url 'login' %}">Sign up</a>
+              {% endif %}
+		        </div>
+          </div>
+        </div>
+      </nav> 
     </header>
     <main>{% block content%} {% endblock %}</main>
     <footer></footer>
