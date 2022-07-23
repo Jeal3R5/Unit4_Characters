@@ -17,6 +17,17 @@
   </div>
   <div class="show right-panel">
     <h1>Right</h1>
+    {% for photo in tamagotchi.photo_set.all %}
+    <img src="{{photo.url}}" alt="fun image">
+    {% empty %}
+    <div>Upload Fun Times with {{tamagotchi.name}}</div>
+    {% endfor %}
+    <form action="{% url 'add_photo' tamagotchi.id %}" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <input type="file" name="photo-file" >
+      <br /><br />
+      <input type="submit" value="Upload Image">
+    </form>
   </div>
 </div>
 {% endblock %}
