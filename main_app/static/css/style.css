@@ -57,11 +57,14 @@ h1 {
   text-align: center;
   color: #5f04b4;
   background-color: #ECE0F8;
-  margin-top: 10px;
 }
 
 
 h2 {
   text-align: center;
 
+}
+
+.header {
+  margin: 25px;
 }
