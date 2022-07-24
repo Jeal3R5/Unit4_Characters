@@ -20,9 +20,9 @@ header {
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-.show {
+/* .show {
   border: 2px dotted red;
-}
+} */
 
 .show-page > .left-panel {
   grid-area: left;
@@ -73,17 +73,16 @@ h2 {
   background-color: #ECE0F8;
 }
 
-/* a.navbar-brand {
+a.navbar-brand {
   color: #5f04b4;
   background-color: #ECE0F8;
-  border: 1px solid red;
-} */
+}
 
-/* a.navbar {
+a.nav-link {
   color: #5f04b4;
   background-color: #ECE0F8;
 } 
-*/
+
 
 .container-fluid {
   color: #5f04b4;
