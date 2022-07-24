@@ -54,6 +54,10 @@ main {
 }
 
 
-#home_image {
+/* #home_image {
   align-items: center;
+} */
+
+#home {
+  align-content: center;
 }
