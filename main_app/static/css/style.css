@@ -7,6 +7,7 @@ header {
   height: 5vh;
   background-color: #ECE0F8;
   color: #5f04b4;
+  margin: 5px;
 }
 
 .show-page {
@@ -46,20 +47,15 @@ header {
   align-self: center;
 }
 
-header {
-    background-color: #ECE0F8;
-    color: #5f04b4;
-    padding: 5px;
-}
 
 main {
     background-color: #ECE0F8;
     color: #5f04b4
 }
 
-.home {
+/* .home {
   align-content: center;
-}
+} */
 
 h1 {
   text-align: center;
@@ -75,6 +71,6 @@ h1 {
   width: 40%;
 } */
 
-div img {
+/* div img {
   align-content: center;
-}
+} */
