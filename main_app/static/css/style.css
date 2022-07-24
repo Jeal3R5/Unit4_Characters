@@ -68,6 +68,10 @@ h2 {
 
 }
 
+.navStyle {
+  color: #5f04b4;
+  background-color: #ECE0F8;
+}
 
 /* a.navbar-brand {
   color: #5f04b4;
@@ -75,7 +79,7 @@ h2 {
   border: 1px solid red;
 } */
 
-a.navbar {
+/* a.navbar {
   color: #5f04b4;
   background-color: #ECE0F8;
 } 
@@ -83,7 +87,7 @@ a.navbar {
 .container-fluid {
   color: #5f04b4;
   background-color: #ECE0F8;
-}
+} */
 
 .home {
   text-align: center;
