@@ -94,3 +94,7 @@ h2 {
 .home {
   text-align: center;
 }
+
+.navbar .navbar-expand-lg bg-light {
+  margin: 0px;
+}
