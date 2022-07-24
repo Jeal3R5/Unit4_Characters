@@ -114,7 +114,7 @@ def add_feeding(request, tamagotchi_id):
     new_feeding = form.save(commit=False)
     new_feeding.tamagotchi_id = tamagotchi_id
     new_feeding.save()
-  return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
+  return redirect('tamagotchi_detail', pk=tamagotchi_id)
 
 def signup(request):
   error_message = ''

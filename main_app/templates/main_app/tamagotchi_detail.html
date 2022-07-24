@@ -14,6 +14,27 @@
   </div>
   <div class="show middle-panel">
     <h1>Tamagotchi Details</h1>
+    <form action="{% url 'add_feeding' tamagotchi.id%}">
+      {% csrf_token %}
+      {{feeding_form.as_p}}
+      <input type="submit" value="Feed My Babee">
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Meal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for feeding in tamagotchi.feeding_set.all %}
+        <tr>
+          <td>{{feeding.date}}</td>
+          <td>{{feeding.get_meal_display}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
   <div class="show right-panel">
     <h1>Right</h1>
@@ -30,4 +51,18 @@
     </form>
   </div>
 </div>
+<script>
+  // create a datepicker
+  var dateEl = document.getElementById("id_date");
+  M.Datepicker.init(dateEl, {
+    format: "yyyy-mm-dd",
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+  });
+
+  // initialize the meal select
+  var selectEl = document.getElementById("id_meal");
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}
