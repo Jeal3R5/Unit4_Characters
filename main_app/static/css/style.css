@@ -88,6 +88,7 @@ h2 {
 .container-fluid {
   color: #5f04b4;
   background-color: #ECE0F8;
+  padding: 0px;
 } 
 
 .home {
