@@ -66,11 +66,15 @@ h1 {
   color: #5f04b4;
   background-color: #ECE0F8;
 }
-
+/* 
 .homeImg {
   display: block;
   margin-left: auto;
   margin-right: auto;
   position: center;
   width: 40%;
+} */
+
+div img {
+  align-content: center;
 }
