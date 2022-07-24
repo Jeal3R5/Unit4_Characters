@@ -7,7 +7,6 @@ header {
   height: 5vh;
   background-color: #ECE0F8;
   color: #5f04b4;
-  margin: 10px;
 }
 
 .show-page {
@@ -64,9 +63,4 @@ h1 {
 h2 {
   text-align: center;
 
-}
-
-.header {
-  margin: 5px;
-  padding: 10px;
 }
