@@ -1,3 +1,7 @@
+* {
+  border: 2px solid red;
+}
+
 :root {
     background-color: #ECE0F8;
     color: #5f04b4;
