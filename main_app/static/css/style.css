@@ -53,24 +53,16 @@ main {
     color: #5f04b4
 }
 
-/* .home {
-  align-content: center;
-} */
 
 h1 {
   text-align: center;
   color: #5f04b4;
   background-color: #ECE0F8;
+  margin-top: 10px;
 }
-/* 
-.homeImg {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  position: center;
-  width: 40%;
-} */
 
-/* div img {
-  align-content: center;
-} */
+
+h2 {
+  text-align: center;
+
+}
