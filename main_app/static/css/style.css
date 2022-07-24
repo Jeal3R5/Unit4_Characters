@@ -95,6 +95,9 @@ h2 {
   text-align: center;
 }
 
-.navbar .navbar-expand-lg bg-light {
+.navbar.navbar-expand-lg.bg-light {
   margin: 0px;
 }
+
+
+
