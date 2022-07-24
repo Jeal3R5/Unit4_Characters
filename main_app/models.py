@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 from django.contrib.auth.models import User
 import requests
 
 
-MEAL = (
+MEALS = (
     ('B', 'Breakfast'),
     ('L', 'Lunch'),
     ('D', 'Dinner')
@@ -37,15 +38,15 @@ class Character(models.Model):
 
 
 class Feeding(models.Model):
-    date = models.DateTimeField()
-    meals = models.CharField(max_length=1, choices=MEAL, default=MEAL[0][0])
-    character = models.ForeignKey(Character, on_delete=models.CASCADE)
+    date = models.DateField()
+    meal = models.CharField(max_length=1, choices=MEALS, default=MEALS[0][0])
+    tamagotchi = models.ForeignKey(Tamagotchi, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.date
+        return f"{self.get_meal_display()} on {self.date}."
     
     class Meta:
-        ordering = ["date"]
+        ordering = ["-date"]
     
 
 class Skill(models.Model):
