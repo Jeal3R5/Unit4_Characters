@@ -7,8 +7,6 @@ header {
   height: 5vh;
   background-color: #ECE0F8;
   color: #5f04b4;
-  margin: auto;
-  padding: auto;
 }
 
 .show-page {
@@ -59,7 +57,7 @@ h1 {
   text-align: center;
   color: #5f04b4;
   background-color: #ECE0F8;
-  margin: auto;
+  margin-top: 10px;
 }
 
 
