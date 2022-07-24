@@ -67,6 +67,6 @@ h1 {
   background-color: #ECE0F8;
 }
 
-#home_image {
-  align-items: center;
+.homeImg {
+  align-self: center;
 }
