@@ -57,6 +57,11 @@ main {
 }
 
 
+/* 
 #home {
   align-content: center;
+} */
+
+h1 {
+  text-align: center;
 }
