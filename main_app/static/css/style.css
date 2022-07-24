@@ -67,9 +67,14 @@ h2 {
 
 }
 
-
+/* 
 a.navbar-brand {
-  color:#ECE0F8;
-  background-color: #5f04b4;
+  color: #5f5f5f;;
+  background-color: #ECE0F8;
 
+} */
+
+a.navbar {
+  color: #5f04b4;
+  background-color: #ECE0F8;
 }
