@@ -5,7 +5,10 @@
 
 header {
   height: 5vh;
+  background-color: #ECE0F8;
+  color: #5f04b4;
 }
+
 .show-page {
   display: grid;
   height: 95vh;
@@ -53,10 +56,6 @@ main {
     color: #5f04b4
 }
 
-
-/* #home_image {
-  align-items: center;
-} */
 
 #home {
   align-content: center;
