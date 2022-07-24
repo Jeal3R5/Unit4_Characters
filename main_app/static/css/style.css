@@ -88,7 +88,6 @@ h2 {
 .container-fluid {
   color: #5f04b4;
   background-color: #ECE0F8;
-  margin: 0px;
 } 
 
 .home {
@@ -96,7 +95,8 @@ h2 {
 }
 
 .navbar.navbar-expand-lg.bg-light {
-  margin: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 
