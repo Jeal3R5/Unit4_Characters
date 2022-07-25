@@ -1,5 +1,8 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -7,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import boto3
-from .models import Character, Tamagotchi, Skill, Photo
+from .models import Character, Feeding, Tamagotchi, Skill, Photo
 from .forms import FeedingForm
 # Create your views here.
 
@@ -80,7 +83,7 @@ class TamagotchiUpdate(LoginRequiredMixin, UpdateView):
 class TamagotchiDelete(DeleteView):
   model = Tamagotchi
   success_url: '/tamagotchis/'
-  
+
 @login_required
 def add_photo(request, tamagotchi_id):
     # photo-file will be the "name" attribute on the <input type="file">
