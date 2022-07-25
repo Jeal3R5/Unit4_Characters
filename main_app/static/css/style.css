@@ -104,5 +104,11 @@ a.nav-link {
   background-color: #ECE0F8;
 }
 
+.scifi-room {
+  float:left;
+}
 
+.art-studio {
+  float: right;
+}
 
