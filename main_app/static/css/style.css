@@ -104,11 +104,18 @@ a.nav-link {
   background-color: #ECE0F8;
 }
 
-.scifi-room {
+/* .scifi-room {
   float:left;
+  width: 50%;
+  padding: 25px;
 }
 
 .art-studio {
   float: right;
-}
+} */
 
+.column {
+  float: left;
+  width: 50%;
+  padding: 25px;
+}
