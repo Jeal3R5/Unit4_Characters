@@ -16,18 +16,20 @@
     ></button>
   </div>
   <div class="offcanvas-body">
-    {% if tamagotchis.count %} {% for tamagotchi in tamagotchis_list %}
+    {% if tamagotchis.count %} 
+    {% for tamagotchi in tamagotchis.all %}
     <h1>{{ tamagotchi.name }}</h1>
     <div>
       <form
-        action="{url 'assoc_tamagotchi' character.id tamagotchi.id}"
+        action="{% url 'assoc_tamagotchi' character.id tamagotchi.id %}"
         method="post"
       >
         {% csrf_token %}
         <button type="submit">ADOPT</button>
       </form>
     </div>
-    {% endfor %} {% else %}
+    {% endfor %} 
+    {% else %}
     <h1>No Tamagotchi To Adopt</h1>
     {% endif %}
   </div>

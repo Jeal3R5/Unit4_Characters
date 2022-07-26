@@ -55,13 +55,12 @@ def characters_index(request):
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
   all_skills = []
+  orphan_tamagotchis = Tamagotchi.objects.exclude(id__in = character.tamagotchis.all().values_list('id'))
 
-  for cat in categories:
-    all_skills.append(Skill.create(cat,0))
+  for category in categories:
+    all_skills.append(Skill.create(category,0))
 
-  print(all_skills)
-
-  return render(request, 'characters/detail.html', {'character':character, 'all_skills':all_skills})
+  return render(request, 'characters/detail.html', {'character':character, 'tamagotchis':orphan_tamagotchis, 'all_skills':all_skills})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
@@ -105,6 +104,11 @@ def add_photo(request, tamagotchi_id):
 @login_required
 def assoc_tamagotchi(request, character_id, tamagotchi_id):
   Character.objects.get(id=character_id).tamagotchis.add(tamagotchi_id)
+  return redirect('detail', character_id=character_id)
+
+@login_required
+def disassoc_tamagotchi(request, character_id, tamagotchi_id):
+  Character.objects.get(id=character_id).tamagotchis.remove(tamagotchi_id)
   return redirect('detail', character_id=character_id)
 
 @login_required

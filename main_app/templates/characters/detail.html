@@ -32,7 +32,12 @@
       <h4>Has Tamagotchis</h4>
       {% for tamagotchi in character.tamagotchis.all %}
       <p>{{tamagotchi.name}}</p>
-      {% endfor %} {% else %}
+      <form action="{% url 'disassoc_tamagotchi' character.id tamagotchi.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Set Free</button>
+      </form>
+      {% endfor %} 
+      {% else %}
       <h5>No Tamagotchis Owned</h5>
       {% endif %}
     </div>
