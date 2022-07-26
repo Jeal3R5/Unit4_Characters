@@ -60,13 +60,19 @@ def character_detail(request, character_id):
   for category in categories:
     all_skills.append(Skill.create(category,0))
 
+  # print(all_skills[0].get_quiz()[0]["question"])
   return render(request, 'characters/detail.html', {'character':character, 'tamagotchis':orphan_tamagotchis, 'all_skills':all_skills})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
 
-class TamagotchiDetail(LoginRequiredMixin, DetailView):
-  model = Tamagotchi
+def TamagotchiDetail(request, tamagotchi_id):
+# class TamagotchiDetail(LoginRequiredMixin, DetailView):
+  # model = Tamagotchi
+  tamagotchi = Tamagotchi.objects.get(id=tamagotchi_id)
+  feeding_form = FeedingForm()
+
+  return render(request, 'main_app/tamagotchi_detail.html', {'feeding_form':feeding_form, 'tamagotchi':tamagotchi})
 
 class TamagotchiCreate(LoginRequiredMixin, CreateView):
   model = Tamagotchi
@@ -98,7 +104,7 @@ def add_photo(request, tamagotchi_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('tamagotchi_detail', pk=tamagotchi_id)
+    return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
 
 
 @login_required
@@ -118,7 +124,7 @@ def add_feeding(request, tamagotchi_id):
     new_feeding = form.save(commit=False)
     new_feeding.tamagotchi_id = tamagotchi_id
     new_feeding.save()
-  return redirect('tamagotchi_detail', pk=tamagotchi_id)
+  return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
 
 def signup(request):
   error_message = ''

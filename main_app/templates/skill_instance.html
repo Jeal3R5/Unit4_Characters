@@ -1,5 +1,5 @@
 
-  <h3>{{ skill_name | capfirst}}</h3>
+  <h3>{{ quiz.0.category }}</h3>
   <div class="progress">
     <div
       class="progress-bar progress-bar-striped progress-bar-animated"
@@ -15,7 +15,47 @@
     type="button"
     class="btn btn-warning"
     data-bs-toggle="modal"
-    data-bs-target="#staticBackdrop"
+    data-bs-target={{"#"|stringformat:"sstaticBackdrop"}}{{index}}
   >
-    Level Up {{ skill_name | capfirst}} index {{index}}
+    Level Up {{quiz.0.category}}
   </button>
+  <div
+  class="modal fade"
+  id={{"staticBackdrop"}}{{index}}
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          {{quiz.0.category}}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h2>{{quiz.0.question}}</h2>
+        <ul>
+          <li>{{quiz.0.correctAnswer}}</li>
+          <li>{{quiz.0.incorrectAnswers.0}}</li>
+          <li>{{quiz.0.incorrectAnswers.1}}</li>
+          <li>{{quiz.0.incorrectAnswers.2}}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Submit Answer</button>
+      </div>
+    </div>
+  </div>
+</div>
