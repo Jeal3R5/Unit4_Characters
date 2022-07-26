@@ -22,7 +22,6 @@
     {% for skill in all_skills%}
     {% include 'skill_instance.html' with skill_name=skill index=forloop.counter0 %} 
     {% endfor %}
-
   </div>
   <div class="show right-panel">
     <h1>{{ character.name}}'s Tamagotchis</h1>
@@ -31,12 +30,14 @@
       <h4>Has Tamagotchis</h4>
       {% for tamagotchi in character.tamagotchis.all %}
       <p>{{tamagotchi.name}}</p>
-      <form action="{% url 'disassoc_tamagotchi' character.id tamagotchi.id %}" method="post">
+      <form
+        action="{% url 'disassoc_tamagotchi' character.id tamagotchi.id %}"
+        method="post"
+      >
         {% csrf_token %}
         <button type="submit">Set Free</button>
       </form>
-      {% endfor %} 
-      {% else %}
+      {% endfor %} {% else %}
       <h5>No Tamagotchis Owned</h5>
       {% endif %}
     </div>
