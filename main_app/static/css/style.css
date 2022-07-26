@@ -108,4 +108,5 @@ a.nav-link {
   width: 50%;
   padding: 25px;
   margin: 25px;
+  display: flex;
 }
