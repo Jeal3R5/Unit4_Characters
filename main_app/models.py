@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.urls import reverse
 from datetime import date
@@ -22,7 +23,7 @@ class Tamagotchi(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('tamagotchi_detail', kwargs={'pk':self.id})
+        return reverse('tamagotchi_detail', kwargs={'tamagotchi_id':self.id})
 
 
 class Character(models.Model):
@@ -67,11 +68,11 @@ class Skill(models.Model):
         level += 1
         return level
 
-    @staticmethod
-    def get_quiz(category):
+    @property
+    def get_quiz(self):
         quiz = {}
         endpoint = 'https://the-trivia-api.com/api/questions?categories={category}&limit=1&difficulty=easy'
-        url = endpoint.format(category=category)
+        url = endpoint.format(category=self.name)
         response = requests.get(url)
         quiz = response.json()
         return quiz
