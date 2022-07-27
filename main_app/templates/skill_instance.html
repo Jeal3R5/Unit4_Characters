@@ -7,8 +7,8 @@
       aria-label="Animated striped example"
       aria-valuenow="75"
       aria-valuemin="0"
-      aria-valuemax="100"
-      style="width: 75%"
+      aria-valuemax="200"
+      style={{"width: "}}{{skill.level}}{{"%"}}
     ></div>
   </div>
   <button
@@ -43,19 +43,31 @@
       </div>
       <div class="modal-body">
         <h2>{{quiz.0.question}}</h2>
-        <ul>
-          <li>{{quiz.0.correctAnswer}}</li>
-          <li>{{quiz.0.incorrectAnswers.0}}</li>
-          <li>{{quiz.0.incorrectAnswers.1}}</li>
-          <li>{{quiz.0.incorrectAnswers.2}}</li>
-        </ul>
+        <select class="form-select" aria-label="Default select example" id="quiz_options">
+          <option selected>{{quiz.0.incorrectAnswers.0}}</option>
+          <option value="1">{{quiz.0.correctAnswer}}</option>
+          <option value="2">{{quiz.0.incorrectAnswers.1}}</option>
+          <option value="3">{{quiz.0.incorrectAnswers.2}}</option>
+        </select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Submit Answer</button>
+        <form action="{% url 'level_up' character.id quiz.0.category %}" method="post">
+          {% csrf_token %}
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" id="modal_sub">Submit Answer</button>
+        </form>
       </div>
     </div>
   </div>
+  <script>
+  //   $(document).ready(function() {
+  //       $('#modal_sub').on("click", (evt) =>{
+  //         let ops = $('#quiz_options').val() 
+  //         if (ops)
+  //          console.log(ops)
+  //       })
+  // })
+  </script>
 </div>

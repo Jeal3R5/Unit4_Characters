@@ -19,8 +19,8 @@
   </div>
   <div class="show middle-panel">
     <h1>{{character.name|capfirst}}'s Details</h1>
-    {% for skill in all_skills%}
-    {% include 'skill_instance.html' with index=forloop.counter0 quiz=skill.get_quiz %} 
+    {% for skill in character.skills_set.all %}
+    {% include 'skill_instance.html' with skill=skill index=forloop.counter0 quiz=skill.get_quiz %} 
     {% endfor %}
   </div>
   <div class="show right-panel">
