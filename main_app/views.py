@@ -63,8 +63,6 @@ class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
 
 def TamagotchiDetail(request, tamagotchi_id):
-# class TamagotchiDetail(LoginRequiredMixin, DetailView):
-  # model = Tamagotchi
   tamagotchi = Tamagotchi.objects.get(id=tamagotchi_id)
   feeding_form = FeedingForm()
 
@@ -122,8 +120,11 @@ def add_feeding(request, tamagotchi_id):
     new_feeding.save()
   return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
 
-def verify_answer(request, character_id, skill_name):
-  print(skill_name)
+def verify_answer(request, character_id, skill_id, correct, answer):
+  if answer == correct:
+    skill = Skill.objects.get(id=skill_id)
+    skill.level_up
+    skill.save()
   return redirect('detail', character_id=character_id)
 
 def signup(request):
