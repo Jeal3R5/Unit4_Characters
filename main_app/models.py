@@ -88,7 +88,7 @@ class Skill(models.Model):
 
     @property
     def level_up(self):
-        self.level += 1
+        self.level += 10
 
     @property
     def get_quiz(self):

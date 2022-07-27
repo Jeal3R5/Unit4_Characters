@@ -3,12 +3,12 @@
     <div class="progress">
       <div
       class="progress-bar progress-bar-striped progress-bar-animated"
-      role="progressbar"
-      aria-label="Animated striped example"
+      role={{"progressbar"}}{{index}}
+      aria-label={{"Animated striped"}}{{index}}
       aria-valuenow="75"
       aria-valuemin="0"
-      aria-valuemax="200"
-      style={{"width: "}}{{skill.level}}{{"%"}}
+      aria-valuemax="100"
+      style='width: {{skill.level}}{{"%"}}'
       ></div>
     </div>
   </div>
@@ -52,7 +52,7 @@
         </select>
       </div>
       <div class="modal-footer">
-        <form action="{% url 'level_up' character.id quiz.0.category %}" method="post">
+        <form action="{% url 'level_up' character.id skill.id quiz.0.correctAnswer quiz.0.correctAnswer %}" method="post">
           {% csrf_token %}
           <button type="button" class="btn" id="btn" data-bs-dismiss="modal">
             Close
