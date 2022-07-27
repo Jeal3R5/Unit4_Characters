@@ -1,7 +1,7 @@
-
-  <h3>{{ quiz.0.category }}</h3>
-  <div class="progress">
-    <div
+  <div class="stat-bar">
+    <p>Current {{quiz.0.category | capfirst}} Level: {{skill.level}}</p>
+    <div class="progress">
+      <div
       class="progress-bar progress-bar-striped progress-bar-animated"
       role="progressbar"
       aria-label="Animated striped example"
@@ -9,11 +9,12 @@
       aria-valuemin="0"
       aria-valuemax="200"
       style={{"width: "}}{{skill.level}}{{"%"}}
-    ></div>
+      ></div>
+    </div>
   </div>
   <button
     type="button"
-    class="btn btn-warning"
+    class="btn" id="btn"
     data-bs-toggle="modal"
     data-bs-target={{"#"|stringformat:"sstaticBackdrop"}}{{index}}
   >
@@ -53,10 +54,10 @@
       <div class="modal-footer">
         <form action="{% url 'level_up' character.id quiz.0.category %}" method="post">
           {% csrf_token %}
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <button type="button" class="btn" id="btn" data-bs-dismiss="modal">
             Close
           </button>
-          <button type="submit" class="btn btn-primary" id="modal_sub">Submit Answer</button>
+          <button type="submit" class="btn" id="modal_sub btn">Submit Answer</button>
         </form>
       </div>
     </div>

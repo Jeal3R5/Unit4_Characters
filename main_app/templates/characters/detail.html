@@ -3,7 +3,7 @@
 <div class="show-page">
   <div class="left-panel">
     <div class="panel-content-left rounded-3">
-      <h2>{{character.name | capfirst}}</h2>
+      <h2>Meet {{character.name | capfirst}}</h2>
       <div class="char-details">
         <img
           id="full-body"
@@ -28,9 +28,14 @@
   <div class="middle-panel">
     <div class="panel-content-mid">
       <h2>{{character.name|capfirst}}'s Details</h2>
-      {% for skill in character.skills_set.all %} {% include
-      'skill_instance.html' with skill=skill index=forloop.counter0
-      quiz=skill.get_quiz %} {% endfor %}
+      <div class="char-levels">
+        <h4>Level up {{character.name|capfirst}} by taking quizzes!</h4>
+        {% for skill in character.skill_set.all %}
+        <div class="skill-instance">
+          {% include 'skill_instance.html' with skill=skill index=forloop.counter0 quiz=skill.get_quiz %} 
+        </div> 
+        {% endfor %}
+      </div>
     </div>
   </div>
   <div class="right-panel">
