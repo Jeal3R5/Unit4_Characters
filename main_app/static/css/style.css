@@ -110,3 +110,10 @@ a.nav-link {
   margin: 25px;
   display: flex;
 }
+
+.tamagotchi-list-image {
+  width: 150px;
+  display: flex;
+  margin: auto;
+
+}

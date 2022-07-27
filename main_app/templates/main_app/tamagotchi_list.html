@@ -2,8 +2,16 @@
 
 <h1>Tamagotchi List</h1>
 
+<div class="tamagotchi-list-image">
+  <img src="https://static.wikia.nocookie.net/poohadventures/images/1/11/Mametchi_anime_large.png/revision/latest?cb=20211125025514" alt="Mametchi Tamagotchi" class="tamagotchi-list-image"/>
+  <img src="http://assets.stickpng.com/images/5a2d8ddab3c4622cbe359792.png" alt="Kuchipatchi Tamagotchi" class="tamagotchi-list-image">
+  <img src="http://assets.stickpng.com/images/5a2d8fe9b3c4622cbe3597b8.png" alt="Memetchi Tamagotchi" class="tamagotchi-list-image">
+  <img src="https://static.wikia.nocookie.net/tamagotchi/images/5/5e/MOMOTCHI.png/revision/latest/scale-to-width-down/250?cb=20210609035750" alt="Momotchi Tamagotchi" class="tamagotchi-list-image">
+</div>
+
 {% for tamagotchi in tamagotchi_list %}
 <a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
   <span>{{ tamagotchi.name }}</span>
 </a>
+<br/>
 {% endfor %} {% endblock %}
