@@ -11,7 +11,7 @@
     <img src="http://assets.stickpng.com/images/5a2d8fe9b3c4622cbe3597b8.png" alt="Memetchi Tamagotchi" class="tamagotchi-list-image">
     <img src="https://i.imgur.com/uIOB92D.png" alt="Momotchi Tamagotchi" class="tamagotchi-list-image">
   </div>
-  <div class="index-list">
+  <div class="index-list overflow-auto">
     {% for tamagotchi in tamagotchi_list %}
     <div class="idx-item">
       {% if tamagotchi.pet_type == 'A'%}

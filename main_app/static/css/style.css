@@ -135,6 +135,7 @@ header {
   display: flex;
   width: 80%;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 .pet-message {
@@ -218,7 +219,16 @@ header {
 
 .progress {
   width: 60%;
-  margin-left: 2%;
+  font-size: 1em;
+}
+
+.progress-bar {
+  background-color: var(--accent-color);
+}
+
+.progress span {
+  color: var(--light-color);
+  font-family: var(--title-font);
 }
 
 #full-body {
@@ -364,12 +374,22 @@ p {
   height: 85vh;
 }
 
+.index-list {
+  width: 15%;
+}
+
 .index-list a {
   text-decoration: none;
   font-family: var(--content-font);
-  font-size: xx-large;
-  font-weight: 600;
+  font-size: 2em;
   color: var(--dark-color);
+}
+
+.index-list a:hover {
+  font-size: 3em;
+  color: var(--accent-color);
+  transition: 1s;
+  font-weight:700;
 }
 
 .idx-item {
@@ -396,6 +416,22 @@ p {
 .char-idx-item img {
   width: 5em;
   padding: 10%;
+  border: 2px solid var(--accent-color);
+}
+
+.char-del-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 7%;
+}
+
+.char-del-item img {
+  width: 200px; 
+  padding: 2%;
+  margin-top: 2%;
   border: 2px solid var(--accent-color);
 }
 

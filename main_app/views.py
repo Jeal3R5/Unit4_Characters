@@ -78,7 +78,7 @@ class TamagotchiUpdate(LoginRequiredMixin, UpdateView):
 
 class TamagotchiDelete(DeleteView):
   model = Tamagotchi
-  success_url: '/tamagotchis/'
+  success_url = '/tamagotchis/'
   
 @login_required
 def add_photo(request, tamagotchi_id):
