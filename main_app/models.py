@@ -34,6 +34,9 @@ class Tamagotchi(models.Model):
     def get_absolute_url(self):
         return reverse('tamagotchi_detail', kwargs={'tamagotchi_id':self.id})
 
+    def fed_for_today(self):
+        return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
+
 
 class Character(models.Model):
     sex = models.CharField(max_length=1)
