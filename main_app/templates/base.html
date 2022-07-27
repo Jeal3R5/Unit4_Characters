@@ -38,14 +38,26 @@
             <div class="navbar-nav">
               <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
 		          {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'tamagotchi_index' %}">View All Tamagotchi's</a>
-              <a class="nav-link" href="{% url 'index' %}">View All Characters</a>
-              <a class="nav-link" href="{% url 'character_create' %}">Add Character</a>
-              <a class="nav-link" href="{% url 'tamagotchi_create' %}">Add Tamagotchi</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Characters</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'index' %}">View All Characters</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'character_create' %}">Add Character</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Tamagotchis</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'tamagotchi_index' %}">View All Tamagotchis</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'tamagotchi_create' %}">Add Tamagotchi</a></li>
+                </ul>
+              </li>
               <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
               {% else %} 
               <a class="nav-link" href="{% url 'login' %}">Log In</a>
-              <a class="nav-link" href="{% url 'login' %}">Sign up</a>
+              <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
               {% endif %}
 		        </div>
           </div>
@@ -53,12 +65,12 @@
       </nav> 
     </nav>
     </header>
-    <main class="container-fluid" style="padding-bottom: 0px;">{% block content%} {% endblock %}</main>
+    <main class="container-fluid">{% block content%} {% endblock %}</main>
     <footer class=" fixed-bottom">
       {% if user.is_authenticated %}
       <div>User {{user.username | capfirst}} Now In Session</div>
       {% else %}
-      <div >Log In or Sign Up to Enjoy K-DramaFever!</div>
+      <div >Log In or Sign Up to Play Characters!</div>
       {% endif %}
       <div>
         All Rights Reserved, &copy; 2022 Characters-cv-jr &nbsp;
