@@ -12,11 +12,20 @@ MEALS = (
     ('D', 'Dinner')
 )
 
+TAMAGOTCHIS_TYPE = (
+    ('A', 'Kuchipatchi'), 
+    ('B', 'Memetchi'), 
+    ('C', 'Momotchi'), 
+    ('D', 'Mametchi')
+)
+
+categories = ['science', 'music', 'sport_and_leisure', 'arts_and_literature']
+
 # Create your models here.
 
 class Tamagotchi(models.Model):
     name = models.CharField(max_length=100)
-    pet_type = models.CharField(max_length=100)
+    pet_type = models.CharField(max_length=100, choices=TAMAGOTCHIS_TYPE, default=TAMAGOTCHIS_TYPE[0])
     pet_age = models.PositiveIntegerField()
 
     def __str__(self):
@@ -33,10 +42,15 @@ class Character(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.name
-    
+
+    def save(self, force_insert=False, force_update=False, *args, **kwargs):
+        if self.pk:
+            Skill.objects.create(name="science")
+            return super().save(force_insert, force_update, *args, **kwargs)
+        return super().save(force_insert, force_update, *args, **kwargs)
+
     def get_absolute_url(self):
         return reverse("detail", kwargs={"character_id": self.id})
-
 
 class Feeding(models.Model):
     date = models.DateField()
@@ -52,7 +66,7 @@ class Feeding(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=100)
-    level = models.PositiveIntegerField()
+    level = models.PositiveIntegerField(default=0)
     character = models.ForeignKey(Character, on_delete=models.CASCADE)
    
     def __str__(self):
@@ -63,10 +77,9 @@ class Skill(models.Model):
         skill = cls(name=name, level=level)
         return skill
 
-    @classmethod
-    def level_up(cls, level):
-        level += 1
-        return level
+    @property
+    def level_up(self):
+        self.level += 1
 
     @property
     def get_quiz(self):
@@ -76,7 +89,6 @@ class Skill(models.Model):
         response = requests.get(url)
         quiz = response.json()
         return quiz
-
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)

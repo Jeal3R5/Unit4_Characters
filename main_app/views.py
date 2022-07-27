@@ -54,14 +54,10 @@ def characters_index(request):
 @login_required
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
-  all_skills = []
   orphan_tamagotchis = Tamagotchi.objects.exclude(id__in = character.tamagotchis.all().values_list('id'))
 
-  for category in categories:
-    all_skills.append(Skill.create(category,0))
-
   # print(all_skills[0].get_quiz()[0]["question"])
-  return render(request, 'characters/detail.html', {'character':character, 'tamagotchis':orphan_tamagotchis, 'all_skills':all_skills})
+  return render(request, 'characters/detail.html', {'character':character, 'tamagotchis':orphan_tamagotchis})
 
 class TamagotchiList(LoginRequiredMixin, ListView):
   model = Tamagotchi
@@ -125,6 +121,10 @@ def add_feeding(request, tamagotchi_id):
     new_feeding.tamagotchi_id = tamagotchi_id
     new_feeding.save()
   return redirect('tamagotchi_detail', tamagotchi_id=tamagotchi_id)
+
+def verify_answer(request, character_id, skill_name):
+  print(skill_name)
+  return redirect('detail', character_id=character_id)
 
 def signup(request):
   error_message = ''

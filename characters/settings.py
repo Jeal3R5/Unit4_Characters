@@ -89,8 +89,8 @@ WSGI_APPLICATION = 'characters.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql', #-- local migrations
-        'ENGINE': 'django.db.backends.postgresqpl_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql', #-- local migrations
+        # 'ENGINE': 'django.db.backends.postgresqpl_psycopg2',
         'NAME': env('POSTGRES_DB_NAME'),
         'USER': env('POSTGRES_USER'),
         'PASSWORD': env('POSTGRES_PASSWORD'),
