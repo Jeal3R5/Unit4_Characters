@@ -1,17 +1,40 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
-<h1>Tamagotchi List</h1>
+<div class="index-page">
 
-<div class="tamagotchi-list-image">
-  <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi Tamagotchi" class="tamagotchi-list-image"/>
-  <img src="https://i.imgur.com/S5x6vG1.png" alt="Kuchipatchi Tamagotchi" class="tamagotchi-list-image">
-  <img src="http://assets.stickpng.com/images/5a2d8fe9b3c4622cbe3597b8.png" alt="Memetchi Tamagotchi" class="tamagotchi-list-image">
-  <img src="https://i.imgur.com/uIOB92D.png" alt="Momotchi Tamagotchi" class="tamagotchi-list-image">
+  <h1>Tamagotchi List</h1>
+  
+  <div class="tam-imgs">
+    <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi Tamagotchi" class="tamagotchi-list-image"/>
+    <img src="https://i.imgur.com/S5x6vG1.png" alt="Kuchipatchi Tamagotchi" class="tamagotchi-list-image">
+    <img src="http://assets.stickpng.com/images/5a2d8fe9b3c4622cbe3597b8.png" alt="Memetchi Tamagotchi" class="tamagotchi-list-image">
+    <img src="https://i.imgur.com/uIOB92D.png" alt="Momotchi Tamagotchi" class="tamagotchi-list-image">
+  </div>
+  <div class="index-list">
+    {% for tamagotchi in tamagotchi_list %}
+    <div class="idx-item">
+      {% if tamagotchi.pet_type == 'A'%}
+        <img src="https://i.imgur.com/S5x6vG1.png" alt="Kutchipatchi" class="rounded-circle"/>
+        {% elif tamagotchi.pet_type == 'B'%}
+        <img src="https://i.imgur.com/lmI3cOF.png" alt="Memetchi" class="rounded-circle"/>
+        {% elif tamagotchi.pet_type == 'C'%}
+        <img
+          src="https://i.imgur.com/uIOB92D.png"
+          alt="Momotchi"
+          class="rounded-circle"
+        />
+        {% elif tamagotchi.pet_type == 'D'%}
+        <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi" class="rounded-circle"/>
+        {% else %}
+        <img src="https://i.imgur.com/FXiF2A9.png" alt="no type" class="rounded-circle"/>
+        {% endif %}
+      <a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
+        <span>{{ tamagotchi.name }}</span>
+      </div>
+      </a>
+    {% endfor %} 
+  </div>
 </div>
 
-{% for tamagotchi in tamagotchi_list %}
-<a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
-  <span>{{ tamagotchi.name }}</span>
-</a>
-<br/>
-{% endfor %} {% endblock %}
+{% endblock %}

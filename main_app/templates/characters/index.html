@@ -1,9 +1,30 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+ {% block content %}
+<div class="index-page">
 
-<h1>Characters List</h1>
-
-{% for character in characters %}
-<a href="{% url 'detail' character.id %}">
-  <span>{{ character.name }}</span>
-</a>
-{% endfor %} {% endblock %}
+  <h1>Characters List</h1>
+  
+  <div class="char-imgs">
+    <img src="https://i.imgur.com/otU6Zsv.png" alt="male">
+    <img src="https://i.imgur.com/wWmHhf2.png" alt="female">
+  </div>
+  <div class="index-list">
+    {% for character in characters %}
+    <div class="char-idx-item">
+      <img
+      {% if character.sex == 'M'%}
+      src="https://i.imgur.com/otU6Zsv.png"
+      {% else %}
+      src="https://i.imgur.com/wWmHhf2.png"
+      {% endif %}
+      alt="avatar"
+      class="rounded-circle"
+    />
+      <a href="{% url 'detail' character.id %}">
+        <span>{{ character.name }}</span>
+      </a>
+    </div>
+    {% endfor %} 
+  </div>
+</div>
+{% endblock %}
