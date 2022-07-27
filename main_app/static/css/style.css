@@ -114,5 +114,6 @@ a.nav-link {
 .tamagotchi-list-image {
   width: 150px;
   display: flex;
-  justify-content: space-between;
+  margin: auto;
+
 }
