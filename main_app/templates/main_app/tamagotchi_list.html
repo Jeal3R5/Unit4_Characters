@@ -2,6 +2,14 @@
 
 <h1>Tamagotchi List</h1>
 
+<img src="https://www.clipartmax.com/png/middle/283-2831529_mametchi-anime-winking-tamagotchi-characters-mametchi.png" alt="mametchi tamagotchi"/>
+
+
+
+
+
+
+
 {% for tamagotchi in tamagotchi_list %}
 <a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
   <span>{{ tamagotchi.name }}</span>
