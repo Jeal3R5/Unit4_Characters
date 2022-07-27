@@ -1,65 +1,141 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="show-page">
-  <div class="show left-panel">
-    <div>
+  <div class="show left-panel rounded-3">
+    <div class="panel-content rounded-3">
       <h2>{{ tamagotchi.name }}</h2>
-      <h3>Type: {{tamagotchi.pet_type}}</h3>
-      {% if tamagotchi.pet_type == 'A'%}
-      <img src="https://i.imgur.com/S5x6vG1.png" alt="Kutchipatchi" id="full-body">
-      {% elif tamagotchi.pet_type == 'B'%}
-      <img src="https://i.imgur.com/lmI3cOF.png" alt="Memetchi" id="full-body">
-      {% elif tamagotchi.pet_type == 'C'%}
-      <img src="https://i.imgur.com/uIOB92D.png" alt="Momotchi" id="full-body">
-      {% elif tamagotchi.pet_type == 'D'%}
-      <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi" id="full-body">
-      {% else %}
-      <img src="https://i.imgur.com/FXiF2A9.png" alt="no type" id="full-body">
-     {% endif %}
-      <div>
-
-        <a href="{% url 'tamagotchi_update' tamagotchi.id %}">Edit</a>
-        <a href="{% url 'tamagotchi_delete' tamagotchi.id %}">Delete</a>
+      <div class="pet-details">
+        {% if tamagotchi.pet_type == 'A'%}
+        <img src="https://i.imgur.com/S5x6vG1.png" alt="Kutchipatchi" />
+        {% elif tamagotchi.pet_type == 'B'%}
+        <img src="https://i.imgur.com/lmI3cOF.png" alt="Memetchi" />
+        {% elif tamagotchi.pet_type == 'C'%}
+        <img
+          src="https://i.imgur.com/uIOB92D.png"
+          alt="Momotchi"
+          class="img-fluid"
+        />
+        {% elif tamagotchi.pet_type == 'D'%}
+        <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi" />
+        {% else %}
+        <img src="https://i.imgur.com/FXiF2A9.png" alt="no type" />
+        {% endif %}
+        <h3>Type: {{tamagotchi.pet_type}}</h3>
+        <div class="pet-buttons">
+          <a
+            href="{% url 'tamagotchi_update' tamagotchi.id %}"
+            class="btn btn-lg" id="btn"
+            >Edit</a
+          >
+          <a
+            href="{% url 'tamagotchi_delete' tamagotchi.id %}"
+            class=" btn btn-lg" id="btn"
+            >Delete</a
+          >
+        </div>
       </div>
     </div>
   </div>
-  <div class="show middle-panel">
-    <h1>Tamagotchi Details</h1>
-    <form action="{% url 'add_feeding' tamagotchi.id%}" method="post">
-      {% csrf_token %}
-      {{feeding_form.as_p}}
-      <input type="submit" value="Feed My Babee">
-    </form>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Meal</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for feeding in tamagotchi.feeding_set.all %}
-        <tr>
-          <td>{{feeding.date}}</td>
-          <td>{{feeding.get_meal_display}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="show middle-panel">  
+    <div class="panel-content-mid">
+      <div class="pet-message"> 
+        <h2>Tamagotchi Details</h2>
+        <p class="text-center fs-2">Welcome to your tamagotchi's self-care center. Make sure to take care of your tamagotchi every day!</p>
+      </div>
+      <div class="pet-actions">
+        <h3>Take Care of {{tamagotchi.name}}'s Needs</h3>
+        {% if tamagotchi.fed_for_today %}
+         <p class="fs-3" >
+           Might As Well Keep Feeding {{tamagotchi.name}}
+         </p> 
+        {% else %} 
+          <p class="fs-3">
+            Don't Forget to Feed {{tamagotchi.name}} Today!
+          </p>
+        {% endif %}
+        <button
+        class="btn" id="btn"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseFeedForm"
+          aria-expanded="false" 
+          aria-controls="collapseFeedForm"
+        >
+        Feed {{tamagotchi.name}}
+        </button>
+        <div class="collapse" id="collapseFeedForm">
+          <div class="card card-body">
+            <form action="{% url 'add_feeding' tamagotchi.id%}" method="post">
+              {% csrf_token %} {{feeding_form.as_p}}
+              <input type="submit" value="Add Feeding" class="btn" id="btn" />
+            </form>
+          </div>
+        </div>      
+      </div>
+      <div class="pet-log">
+        <h3>Keep Track Of {{tamagotchi.name}}'s Logs</h3>
+        <button
+        class="btn" id="btn"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseFeedings"
+          aria-expanded="false"
+          aria-controls="collapseFeedings"
+        >
+          Show All Feedings
+        </button>
+        <div class="collapse" id="collapseFeedings">
+          <div class="card card-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Meal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for feeding in tamagotchi.feeding_set.all %}
+                <tr>
+                  <td>{{feeding.date}}</td>
+                  <td>{{feeding.get_meal_display}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="show right-panel">
-    <h1>Right</h1>
-    {% for photo in tamagotchi.photo_set.all %}
-    <img src="{{photo.url}}" alt="fun image" class="img-fluid img-thumbnail">
-    {% empty %}
-    <div>Upload Fun Times with {{tamagotchi.name}}</div>
-    {% endfor %}
-    <form action="{% url 'add_photo' tamagotchi.id %}" enctype="multipart/form-data" method="post">
-      {% csrf_token %}
-      <input type="file" name="photo-file" >
-      <br /><br />
-      <input type="submit" value="Upload Image">
-    </form>
+  <div class="show right-panel rounded-3">
+    <div class="panel-content-left rounded-3">
+      <h2>Pictures of {{tamagotchi.name}}</h2>
+      <br />
+      <form
+        action="{% url 'add_photo' tamagotchi.id %}"
+        enctype="multipart/form-data"
+        method="post"
+        id="photo-upload"
+      >
+        {% csrf_token %}
+        <input type="file" name="photo-file" />
+        <br /><br />
+        <input
+          type="submit"
+          value="Upload Image"
+          class="btn" id="btn"
+        />
+      </form>
+      {% for photo in tamagotchi.photo_set.all %}
+      <img
+        src="{{photo.url}}"
+        alt="fun image"
+        class="img-fluid img-thumbnail"
+      />
+      {% empty %}
+      <h2>Upload Fun Times with {{tamagotchi.name}}</h2>
+      {% endfor %}
+    </div>
   </div>
 </div>
 <script>
