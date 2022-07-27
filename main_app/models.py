@@ -19,6 +19,11 @@ TAMAGOTCHIS_TYPE = (
     ('D', 'Mametchi')
 )
 
+SEX = (
+    ('M', 'Male'),
+    ('F', 'Female')
+)
+
 categories = ['science', 'music', 'sport_and_leisure', 'arts_and_literature']
 
 # Create your models here.
@@ -39,7 +44,7 @@ class Tamagotchi(models.Model):
 
 
 class Character(models.Model):
-    sex = models.CharField(max_length=1)
+    sex = models.CharField(max_length=1, choices=SEX, default=SEX[0][0])
     name = models.CharField(max_length=100)
     tamagotchis = models.ManyToManyField(Tamagotchi)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,7 +53,7 @@ class Character(models.Model):
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         if self.pk:
-            Skill.objects.create(name="science")
+            Skill.create(name="science", level=0)
             return super().save(force_insert, force_update, *args, **kwargs)
         return super().save(force_insert, force_update, *args, **kwargs)
 

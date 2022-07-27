@@ -2,55 +2,89 @@
 
 <div class="show-page">
   <div class="show left-panel">
-    <h1>Left</h1>
-    <img
-      id="full-body"
-      src="https://f1.pngfuel.com/png/963/599/727/man-silhouette-drawing-portrait-standing-black-male-human-png-clip-art.png"
-      alt="avatar"
-    />
-    <div class="btns-section">
-      <button>
-        <a href="{% url 'character_update' character.id %}">EDIT</a>
-      </button>
-      <button>
-        <a href="{% url 'character_delete' character.id %}">DELETE</a>
-      </button>
+    <div class="panel-content-left rounded-3">
+      <h2>{{character.name | capfirst}}</h2>
+      <div class="char-details">
+        <img
+          id="full-body"
+          {% if character.sex == 'M'%}
+          src="https://i.imgur.com/otU6Zsv.png"
+          {% else %}
+          src="https://i.imgur.com/wWmHhf2.png"
+          {% endif %}
+          alt="avatar"
+        />
+        <div class="btns-section">
+          <button class="btn" id="btn">
+            <a href="{% url 'character_update' character.id %}">EDIT</a>
+          </button>
+          <button class="btn" id="btn">
+            <a href="{% url 'character_delete' character.id %}">DELETE</a>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="show middle-panel">
-    <h1>{{character.name|capfirst}}'s Details</h1>
-    {% for skill in character.skills_set.all %}
-    {% include 'skill_instance.html' with skill=skill index=forloop.counter0 quiz=skill.get_quiz %} 
-    {% endfor %}
+    <div class="panel-content-mid">
+      <h2>{{character.name|capfirst}}'s Details</h2>
+      {% for skill in character.skills_set.all %} {% include
+      'skill_instance.html' with skill=skill index=forloop.counter0
+      quiz=skill.get_quiz %} {% endfor %}
+    </div>
   </div>
   <div class="show right-panel">
-    <h1>{{ character.name}}'s Tamagotchis</h1>
-    <div>
-      {% if character.tamagotchis.count %}
-      <h4>Has Tamagotchis</h4>
-      {% for tamagotchi in character.tamagotchis.all %}
-      <p>{{tamagotchi.name}}</p>
-      <form
-        action="{% url 'disassoc_tamagotchi' character.id tamagotchi.id %}"
-        method="post"
-      >
-        {% csrf_token %}
-        <button type="submit">Set Free</button>
-      </form>
-      {% endfor %} {% else %}
-      <h5>No Tamagotchis Owned</h5>
-      {% endif %}
-    </div>
-    <div>
-      <button
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-      >
-        Own a Tamagotchi
-      </button>
-      {% include 'off_pagination.html' %}
+    <div class="panel-content-right">
+      <h1>{{ character.name | capfirst}}'s Tamagotchis</h1>
+      <br />
+      <div class="pet-list">
+        <div>
+          <button
+            class="btn" id="btn"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          >
+            Own a Tamagotchi
+          </button>
+          {% include 'off_pagination.html' %}
+        </div>
+        <div id="list-display" class="overflow-auto">
+
+          {% if character.tamagotchis.count %}
+          {% for tamagotchi in character.tamagotchis.all %}
+          <div class="adopted-pet">
+
+            <a href="{% url 'tamagotchi_detail' tamagotchi.id %}">
+              <h3>{{ tamagotchi.name }}</h3>
+            </a>
+            <img
+            {% if tamagotchi.pet_type == 'A' %} 
+            src="https://i.imgur.com/S5x6vG1.png"
+            {% elif tamagotchi.pet_type == 'B'%}
+            src="https://i.imgur.com/lmI3cOF.png"
+            {% elif tamagotchi.pet_type == 'C'%}
+            src="https://i.imgur.com/uIOB92D.png"
+            {% elif tamagotchi.pet_type == 'D'%}
+            src="https://i.imgur.com/Aw432KN.png" 
+            {% else %}
+            src="https://i.imgur.com/FXiF2A9.png"
+            {% endif %} 
+            alt="no type" >
+            <form
+            action="{% url 'disassoc_tamagotchi' character.id tamagotchi.id %}"
+            method="post"
+            >
+            {% csrf_token %}
+            <button class="btn" id="btn" type="submit">Set Free</button>
+          </form>
+        </div>
+        {% endfor %} {% else %}
+        <h5>No Tamagotchis Owned</h5>
+        {% endif %}
+      </div>
+      </div>
     </div>
   </div>
 </div>
