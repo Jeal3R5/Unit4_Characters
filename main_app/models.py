@@ -51,12 +51,13 @@ class Character(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, force_insert=False, force_update=False, *args, **kwargs):
-        if self.pk:
-            Skill.create(name="science", level=0)
-            return super().save(force_insert, force_update, *args, **kwargs)
-        return super().save(force_insert, force_update, *args, **kwargs)
-
+    def save(self, *args, **kwargs):
+        created = not self.pk
+        super().save(*args, **kwargs)
+        if created:
+            for category in categories:
+                Skill.objects.create(name=category, level=0,character=self)
+            
     def get_absolute_url(self):
         return reverse("detail", kwargs={"character_id": self.id})
 
