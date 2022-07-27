@@ -1,15 +1,19 @@
   <div class="stat-bar">
-    <p>Current {{quiz.0.category | capfirst}} Level: {{skill.level}}</p>
+    <p>{{quiz.0.category | capfirst}}</p>
     <div class="progress">
       <div
-      class="progress-bar progress-bar-striped progress-bar-animated"
+      class="progress-bar bg-success progress-bar-striped progress-bar-animated"
       role={{"progressbar"}}{{index}}
       aria-label={{"Animated striped"}}{{index}}
       aria-valuenow="75"
       aria-valuemin="0"
       aria-valuemax="100"
       style='width: {{skill.level}}{{"%"}}'
-      ></div>
+      >
+      <span>
+       {{skill.level}} %
+      </span>
+    </div>
     </div>
   </div>
   <button

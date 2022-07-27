@@ -1,15 +1,32 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Delete Character</h1>
+{% extends 'base.html' %} 
+{% block content %}
+<div class="char-form">
 
-<h4>
-  Now Deleting
-  <span>{{ object.title }}</span>
-</h4>
+  <h1>Delete Character</h1>
+  
+  <div class="char-del-item">
 
-<form action="" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Confirm" />
-  <a href="{% url 'detail' character.id %}">CANCEL CANCEL!</a>
-</form>
+    <h3>
+      Now Deleting
+      <span>{{ object.name }}</span>
+    </h3>
+    <img
+    {% if character.sex == 'M'%}
+    src="https://i.imgur.com/otU6Zsv.png"
+    {% else %}
+    src="https://i.imgur.com/wWmHhf2.png"
+    {% endif %}
+    alt="avatar"
+    class="rounded-circle"
+    />
+  </div>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="DELETE" class="btn btn-lg" id="btn"/>
+    <button class="btn btn-lg" id="btn">
+      <a href="{% url 'detail' character.id %}">CANCEL! CANCEL!</a>
+    </button>
+  </form>
+</div>
 
 {% endblock%}
