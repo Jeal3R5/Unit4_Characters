@@ -12,24 +12,18 @@
 }
 
 header {
-  height: 5vh;
   background-color: var(--light-color);
   color: var(--dark-color)
 }
 
-body {
-  background-color: var(--light-color);
-  color: var(--dark-color);
-}
-
 .show-page {
   display: grid;
-  height: 95vh;
   grid-template-areas:
     "left middle right"
     "left middle right"
     "left middle right";
   grid-template-columns: 1fr 2fr 1fr;
+  height: 90vh;
 }
 
 .show-page > .left-panel {
@@ -69,13 +63,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   background-color: var(--dark-color-opaque);
   border:3px solid  var(--accent-color);
   color: var(--accent-color);
   font-family: var(--title-font);
   box-shadow: 2px 2px 10px black;
   margin: 2%;
+  height: 100%;
 }
 
 .panel-content-left > h2,.pet-details > h3, .panel-content-right > h2  {
@@ -83,7 +77,7 @@ body {
 }
 
 .pet-details, .char-details {
-  margin-top: 20%;
+  margin-top: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +92,7 @@ body {
 
 
 .pet-buttons, .btns-section {
-  margin: 25%;
+  margin: 20%;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -110,8 +104,6 @@ body {
   justify-content: center;
   align-items: center;
   font-family: var(--content-font);
-  height: 100%;
-
 }
 
 .panel-content-mid h2, .panel-content-mid h3 {
@@ -148,13 +140,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   background-color: var(--dark-color-opaque);
   border:3px solid  var(--accent-color);
   color: var(--accent-color);
   font-family: var(--title-font);
   box-shadow: 2px 2px 10px black;
-  margin: 2%;
+  margin: 1.5%;
+  height: 100%;
 }
 
 .pet-list {
@@ -174,10 +166,8 @@ body {
 }
 #list-display {
   margin: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  height: 70vh;
+  width: 70%;
 }
 
 #list-display img {
@@ -211,12 +201,10 @@ body {
 
 
 main {
-    background-color: var(--light-color);
-    color: var();
-    /* margin: 10px; */
-    padding: 10px;
-}
+  background-color: var(--light-color);
+  padding: 2%;
 
+}
 
 h1, h2, h3, p {
   text-align: center;
@@ -230,6 +218,7 @@ h1, h2, h3, p {
 
 .home {
   text-align: center;
+  width: 100%;
 }
 
 .navbar.navbar-expand-lg.bg-light {
@@ -245,9 +234,27 @@ h1, h2, h3, p {
   display: flex;
 }
 
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.297);
+}
+
+.carousel-caption p {
+  color: white;
+}
+
+#carouselExampleCaptions, .carousel-inner, .carousel-inner img {
+  max-height: 30rem;
+}
+
 .tamagotchi-list-image {
   width: 150px;
   display: flex;
   margin: auto;
 
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--accent-color);
 }

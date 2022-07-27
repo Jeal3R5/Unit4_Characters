@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="show-page">
-  <div class="show left-panel">
+  <div class="left-panel">
     <div class="panel-content-left rounded-3">
       <h2>{{character.name | capfirst}}</h2>
       <div class="char-details">
@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div class="show middle-panel">
+  <div class="middle-panel">
     <div class="panel-content-mid">
       <h2>{{character.name|capfirst}}'s Details</h2>
       {% for skill in character.skills_set.all %} {% include
@@ -33,8 +33,8 @@
       quiz=skill.get_quiz %} {% endfor %}
     </div>
   </div>
-  <div class="show right-panel">
-    <div class="panel-content-right">
+  <div class="right-panel">
+    <div class="panel-content-right rounded-3">
       <h1>{{ character.name | capfirst}}'s Tamagotchis</h1>
       <br />
       <div class="pet-list">
