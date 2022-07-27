@@ -1,9 +1,27 @@
-{% extends 'base.html' %} {% block content %}
-<form action="" method="post">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" />
-</form>
+{% extends 'base.html' %} 
+{% block content %}
+<div class="char-form">
+  {% if object %}
+  <h1>Edit <span>{{object.name}}</span></h1>
+  {% else %}
+  <h1>Add Tamagotchi</h1>
+  {% endif %}
+  <div class="tam-imgs">
+    <img src="https://i.imgur.com/Aw432KN.png" alt="Mametchi Tamagotchi"/>
+    <img src="https://i.imgur.com/S5x6vG1.png" alt="Kuchipatchi Tamagotchi">
+    <img src="http://assets.stickpng.com/images/5a2d8fe9b3c4622cbe3597b8.png" alt="Memetchi Tamagotchi" >
+    <img src="https://i.imgur.com/uIOB92D.png" alt="Momotchi Tamagotchi">
+  </div>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    {% if object %}
+    <input type="submit" value="Update" class="btn btn-lg" id="btn"/>
+    {% else %}
+    <input type="submit" value="Add" class="btn btn-lg" id="btn" />
+    {% endif %}
+  </form>
+</div>
 {% endblock %}
