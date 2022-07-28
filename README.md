@@ -34,7 +34,7 @@ Welcome to "our project Characters". This is a simple game where the user is abl
 
 * We would like the user to be able to click on a Tamagotchi and it will show a list of which characters own that pet.
 
-**Summary**
+<h3 align="center">Summary</h3>
 | Field | Detail |
 |-----|------|
 | Project Name | Project4 Characters |
