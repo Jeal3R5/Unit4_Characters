@@ -19,7 +19,8 @@ Welcome to "our project Characters". This is a simple game where the user is abl
 | Project Name | Project4 Characters |
 | Developers | Joan Renfroe, Chedeline Viljean|
 
-### TECHNOLOGY USED:
+<h2 align="center">Technology Used</h2>
+
 * Python
 * Django
 * AWS
@@ -32,6 +33,8 @@ Welcome to "our project Characters". This is a simple game where the user is abl
 * Bootstrap
 * API used for quizzes: https://the-trivia-api.com/docs/
 
-### FUTURE ENHANCEMENTS
+<h2 align="center">Future Enhancements</h2>
+
 * We would like to increase functionality for the Tamagotchi's, where the user is able to feed, water, toilet, bathe, and play with the pet.
+
 * We would like the user to be able to click on a Tamagotchi and it will show a list of which characters own that pet.
