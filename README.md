@@ -13,11 +13,6 @@ Welcome to "our project Characters". This is a simple game where the user is abl
 
 <p align="center"><img align="center" src="https://i.imgur.com/scfHyFI.png" width="500"></p>
 
-**Summary**
-| Field | Detail |
-|-----|------|
-| Project Name | Project4 Characters |
-| Developers | Joan Renfroe, Chedeline Viljean|
 
 <h2 align="center">Technology Used</h2>
 
@@ -38,3 +33,9 @@ Welcome to "our project Characters". This is a simple game where the user is abl
 * We would like to increase functionality for the Tamagotchi's, where the user is able to feed, water, toilet, bathe, and play with the pet.
 
 * We would like the user to be able to click on a Tamagotchi and it will show a list of which characters own that pet.
+
+**Summary**
+| Field | Detail |
+|-----|------|
+| Project Name | Project4 Characters |
+| Developers | Joan Renfroe, Chedeline Viljean|
